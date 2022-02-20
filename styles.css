@@ -1,0 +1,78 @@
+
+/*::before ::after selects everything before and after*/
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+/*:root will make the changes to the entire css document*/
+:root{
+    --hue: 200;
+    --saturation: 50%;
+    --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+    --background-color: hsl(var(--hue), var(--saturation), 20%);
+
+}
+/*Selects and make changes to the body section of the html*/
+body{
+    margin: 0;
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+/*paddles on the side of the screen to hit the ball*/
+.paddle{
+    --position: 50;
+
+    position: absolute;
+    background-color: var(--foreground-color);
+    top: calc(var(--position) * 1vh);
+    transform: translateY(-50%);
+    width: 1vh;
+    height: 10vh;
+}
+
+.paddle.left{
+    left: 1vw;
+}
+
+.paddle.right{
+    right: 1vw;
+
+}
+
+.ball{
+    --x: 50; 
+    --y: 50; 
+    position: absolute;
+    background-color: var(--foreground-color); 
+    left: calc(var(--x) * 1vw); /* to position the ball to the center of the page*/
+    top:  calc(var(--y) * 1vh); /* to position the ball to the center of the page*/
+
+    border-radius: 50%;  /*To make the ball circle*/
+    transform: translateY(-50%); /* to position the ball in the center of the y axis*/
+
+    width: 2.5vh;
+    height: 2.5vh;
+}
+
+.score{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 7vh;
+    color: var(--foreground-color);
+
+}
+/* > * selecting every direct child in the class score*/
+.score > * {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 0 2vh;
+    margin: 1vh 0;
+    opacity: 0.5; /* lighter than the foreground color*/
+
+}
+
+.score > :first-child{
+    text-align: right;
+    border-right: 0.5vh solid var(--foreground-color) ; /* Draws a small border line in between the scores*/
+}

@@ -11,7 +11,7 @@ let lastTime
 function update(time){
     if (lastTime != null){
     const delta = time - lastTime
-    ball.update(delta)
+    ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()] )
 
     // Computer paddle will be updated with the ball
     computerPaddle.update(delta, ball.y)
@@ -38,8 +38,10 @@ function handleLose(){
     /* if the ball went off the right side of the scren 
     or hit to the right wall of the screen; player has scored*/
     if (rect.right >= window.innerWidth){
+        //Increment Player score by 1
         playerScoreElem.textContent = parseInt(playerScoreElem.textContent) + 1
     } else {
+        //Increment Computer score by 1
         computerScoreElem.textContent = parseInt(computerScoreElem.textContent) + 1
 
     }
